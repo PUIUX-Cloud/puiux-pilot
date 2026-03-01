@@ -1,5 +1,8 @@
 # PUIUX Pilot
 
+[![CI](https://github.com/PUIUX-Cloud/puiux-pilot/actions/workflows/ci.yml/badge.svg)](https://github.com/PUIUX-Cloud/puiux-pilot/actions/workflows/ci.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
 Adaptive AI coding assistant configurator for [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 Scans your project, selects the right hooks/MCPs/skills, and configures everything automatically.
 
@@ -91,6 +94,14 @@ node bin/puiux-pilot.mjs translate --from claude --to cursor
 
 This feature is experimental. Round-trip fidelity is best-effort; tool-specific rules are preserved as comments.
 
+## Open Core
+
+PUIUX Pilot is **free and open source** for individual developers under the Apache 2.0 license.
+
+**Pro for teams** (coming soon): policy packs, team sync, drift detection, private hook registry, and priority support.
+
+See [TRADEMARKS.md](TRADEMARKS.md) for brand usage guidelines.
+
 ## License
 
-Private — PUIUX Cloud.
+Apache-2.0 — see [LICENSE](LICENSE) for details.

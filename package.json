@@ -43,12 +43,12 @@
     "puiux"
   ],
   "author": "PUIUX <hello@puiux.com>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/puiux/puiux-pilot"
+    "url": "https://github.com/PUIUX-Cloud/puiux-pilot"
   },
-  "homepage": "https://github.com/puiux/puiux-pilot#readme",
+  "homepage": "https://github.com/PUIUX-Cloud/puiux-pilot#readme",
   "engines": {
     "node": ">=18.0.0"
   },
