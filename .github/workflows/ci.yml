@@ -74,6 +74,7 @@ jobs:
         run: |
           export SANDBOX_HOME="$(mktemp -d)"
           export HOME="$SANDBOX_HOME"
+          export USERPROFILE="$SANDBOX_HOME"
           PILOT="node $(pwd)/bin/puiux-pilot.mjs"
 
           # Create test repo
