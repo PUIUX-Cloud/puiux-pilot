@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1C1C2E"/>
+      <stop offset="100%" stop-color="#0D0D1A"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="80" y1="80" x2="432" y2="432" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFA756"/>
+      <stop offset="45%" stop-color="#F27621"/>
+      <stop offset="100%" stop-color="#D4451A"/>
+    </linearGradient>
+    <filter id="glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 0.5 0 0 0  0 0 0.1 0 0  0 0 0 0.35 0" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="shine" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.06)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+
+  <!-- Subtle inner shine -->
+  <rect width="512" height="512" rx="96" fill="url(#shine)"/>
+
+  <!-- Border glow -->
+  <rect x="1" y="1" width="510" height="510" rx="95" fill="none" stroke="rgba(242,118,33,0.12)" stroke-width="1.5"/>
+
+  <!-- P mark with glow -->
+  <g transform="translate(86, 94) scale(4.0)" fill="url(#mark)" filter="url(#glow)">
+    <path d="M24.86 0v77.36a42.52 42.52 0 0 1 0-77.36z"/>
+    <path d="M49.66 41.83a35.08 35.08 0 0 1-7.39-.72V10.74l6.74-.13q17.4 0 17.41 15.25 0 15.97-16.76 15.97z"/>
+    <path d="M85,38.68A42.51,42.51,0,0,1,42.51,81.19h-.24V56q2.94.26,6.28.26,17,0,26.77-9.23a29.11,29.11,0,0,0,8.77-17.3A42.82,42.82,0,0,1,85,38.68Z"/>
+  </g>
+</svg>
