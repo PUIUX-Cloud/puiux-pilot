@@ -6,7 +6,7 @@ If you discover a security vulnerability in PUIUX Pilot, **do not open a public 
 
 Instead, please report it privately:
 
-- **Email**: security@puiux.com
+- **Email**: welcome@puiux.com
 - **Subject**: `[SECURITY] PUIUX Pilot — <brief description>`
 
 We will acknowledge receipt within 48 hours and provide a detailed response within 5 business days.

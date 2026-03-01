@@ -1,7 +1,7 @@
 # Trademarks
 
 This repository is open source under the Apache License 2.0.
-**However, the PUIUX name, the PUIUX logo, and the product name "PUIUX Pilot" are trademarks of PUIUX Cloud.**
+**However, the PUIUX name, the PUIUX logo, and the product name "PUIUX Pilot" are trademarks of PUIUX.**
 
 ## What you MAY do
 
@@ -24,7 +24,7 @@ If you publish a fork or derivative distribution, you must:
 
 - Use a distinct name and branding.
 - Remove PUIUX logos from any UI/docs you distribute.
-- Clearly state that your project is **a fork** and is **not affiliated** with PUIUX Cloud.
+- Clearly state that your project is **a fork** and is **not affiliated** with PUIUX.
 
 ## Reporting misuse
 
