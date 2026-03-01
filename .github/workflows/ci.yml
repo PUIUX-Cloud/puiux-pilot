@@ -1,0 +1,116 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [18, 22]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Unit tests
+        run: npm test
+
+      - name: CLI smoke tests
+        shell: bash
+        run: |
+          node bin/puiux-pilot.mjs --version
+          node bin/puiux-pilot.mjs --help
+
+  release-gates:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    needs: build-and-test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Run release gates
+        shell: bash
+        run: bash tools/release-gates.sh
+
+  smoke-windows:
+    runs-on: windows-latest
+    needs: build-and-test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Windows smoke test
+        shell: bash
+        run: |
+          export SANDBOX_HOME="$(mktemp -d)"
+          export HOME="$SANDBOX_HOME"
+          PILOT="node $(pwd)/bin/puiux-pilot.mjs"
+
+          # Create test repo
+          REPO="$(mktemp -d)"
+          cat > "$REPO/package.json" <<'EOF'
+          {"name":"ci-test","dependencies":{"react":"^19.0.0","next":"^15.0.0"},"devDependencies":{"vitest":"^3.0.0"}}
+          EOF
+          echo "module.exports = {};" > "$REPO/next.config.js"
+
+          # Scan
+          cd "$REPO" && $PILOT scan
+          echo "--- scan OK ---"
+
+          # Init dry-run
+          $PILOT init
+          test ! -f "$SANDBOX_HOME/.claude/.puiux-pilot.json" || (echo "FAIL: dry-run created manifest" && exit 1)
+          echo "--- dry-run OK ---"
+
+          # Init --apply
+          $PILOT init --apply
+          test -f "$SANDBOX_HOME/.claude/.puiux-pilot.json" || (echo "FAIL: apply did not create manifest" && exit 1)
+          test -f "$SANDBOX_HOME/.claude/settings.json" || (echo "FAIL: apply did not create settings" && exit 1)
+          echo "--- apply OK ---"
+
+          # Idempotency
+          HC1=$(grep -c '"command"' "$SANDBOX_HOME/.claude/settings.json" || true)
+          $PILOT init --apply
+          HC2=$(grep -c '"command"' "$SANDBOX_HOME/.claude/settings.json" || true)
+          test "$HC1" = "$HC2" || (echo "FAIL: not idempotent ($HC1 vs $HC2)" && exit 1)
+          echo "--- idempotent OK ---"
+
+          # Doctor
+          $PILOT doctor || true
+          echo "--- doctor OK ---"
+
+          # Eject
+          $PILOT eject
+          echo "--- eject OK ---"
+
+          echo "=== All Windows smoke tests passed ==="
