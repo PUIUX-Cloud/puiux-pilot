@@ -1,37 +1,39 @@
-# PUIUX Pilot
+<div align="center">
+
+<img src="assets/banner.png" alt="PUIUX Pilot" width="100%" />
 
 [![CI](https://github.com/PUIUX-Cloud/puiux-pilot/actions/workflows/ci.yml/badge.svg)](https://github.com/PUIUX-Cloud/puiux-pilot/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/puiux-pilot.svg)](https://www.npmjs.com/package/puiux-pilot)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org)
+
+**One command to scan, configure, and optimize any project for Claude Code.**
+
+[Getting Started](#getting-started) | [Commands](#commands) | [Safety Model](#safety-model) | [Contributing](CONTRIBUTING.md)
+
+</div>
+
+---
 
 Adaptive AI coding assistant configurator for [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
-Scans your project, selects the right hooks/MCPs/skills, and configures everything automatically.
+Scans your project, detects the stack (95+ project types), selects the right hooks/MCPs/skills, and configures everything automatically.
 
-## Quickstart
+## Getting Started
 
 ```bash
-git clone git@github.com:PUIUX-Cloud/puiux-pilot.git
-cd puiux-pilot
-npm ci
-npm run build
+npm i -g puiux-pilot
+cd your-project
+puiux-pilot init            # dry-run: shows what it would do
+puiux-pilot init --apply    # apply changes (backup created first)
 ```
 
-### Try it on any project
+### More commands
 
 ```bash
-# See what Pilot would do (dry-run, no changes)
-node bin/puiux-pilot.mjs init
-
-# Actually apply
-node bin/puiux-pilot.mjs init --apply
-
-# Check health
-node bin/puiux-pilot.mjs doctor
-
-# Quality score (0-100, A-F)
-node bin/puiux-pilot.mjs score
-
-# Remove everything Pilot installed
-node bin/puiux-pilot.mjs eject
+puiux-pilot scan            # project DNA without changes
+puiux-pilot score           # quality score (0-100, A-F)
+puiux-pilot doctor          # health check
+puiux-pilot eject           # clean removal
 ```
 
 ## Commands
