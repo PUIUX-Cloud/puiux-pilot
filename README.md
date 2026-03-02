@@ -6,6 +6,7 @@
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/puiux-pilot.svg)](https://www.npmjs.com/package/puiux-pilot)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org)
+[![PUIUX](https://img.shields.io/badge/PUIUX-puiux.com-orange.svg)](https://puiux.com/)
 
 **One command to scan, configure, and optimize any project for Claude Code.**
 
