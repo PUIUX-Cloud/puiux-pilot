@@ -57,13 +57,13 @@
     "chalk": "^5.4.1",
     "ora": "^8.2.0",
     "fast-glob": "^3.3.3",
-    "diff": "^7.0.0"
+    "diff": "^8.0.3"
   },
   "devDependencies": {
     "typescript": "^5.7.0",
     "tsup": "^8.4.0",
     "vitest": "^4.0.18",
     "@types/node": "^22.0.0",
-    "@types/diff": "^7.0.0"
+    "@types/diff": "^8.0.0"
   }
 }
