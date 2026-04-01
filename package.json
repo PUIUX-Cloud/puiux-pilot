@@ -60,7 +60,7 @@
     "diff": "^7.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.7.0",
+    "typescript": "^6.0.2",
     "tsup": "^8.4.0",
     "vitest": "^4.0.18",
     "@types/node": "^25.3.3",
